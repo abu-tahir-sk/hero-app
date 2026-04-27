@@ -9,19 +9,21 @@ const router = createBrowserRouter([
   {
     path: "/",
     Component: MainLayout,
-    
+
     children: [
-      { index: true,  Component: Home },
+      {
+        index: true,
+        Component: Home
+        
+      },
       {
         path: "/apps",
         Component: Apps,
       },
       { path: "/installation", Component: Installation },
-     
     ],
-     
   },
-  {path: "*", Component: NotFount,}
+  { path: "*", Component: NotFount },
 ]);
 
 export default router;
