@@ -50,13 +50,13 @@ const Installation = () => {
           </div>
         </div>
         {/* app cards */}
-        <div className="overflow-x-auto">
-          <table className="">
-            <tbody>
+        <div className="overflow-x-auto py-4">
+          <table className="min-w-full divide-y divide-gray-200">
+            <tbody className="bg-white divide-y divide-gray-200">
               {/* row 1 */}
-              <tr>
-                <td>
-                  <div className="flex justify-betweennpm  items-center gap-3">
+              <tr className="hover:bg-gray-100 cursor-pointer flex justify-between items-center gap-6 p-4">
+                <td className="px-6 py-4 text-sm text-gray-900  whitespace-nowrap">
+                  <div className="flex   items-center gap-3">
                     <div className="">
                       <div className=" h-12 w-12">
                         <img
@@ -72,10 +72,13 @@ const Installation = () => {
                   </div>
                 </td>
 
-                <button className="">details</button>
+                 <td className="px-6 py-4">
+          <button className="btn btn-ghost btn-xs">details</button>
+        </td>
               </tr>
             </tbody>
           </table>
+          
         </div>
       </div>
     </div>
