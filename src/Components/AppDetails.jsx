@@ -56,7 +56,7 @@ const AppDetails = () => {
             </div>
           </div>
           <button className="bg-[#00D390] text-white font-semibold py-2 px-4 rounded-lg hover:opacity-90 transition-opacity">
-            Install Now (291 MB)
+            Install Now (292 MB)
           </button>
         </div>
       </div>
