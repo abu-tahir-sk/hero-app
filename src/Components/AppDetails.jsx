@@ -58,6 +58,14 @@ const AppDetails = () => {
           <button className="bg-[#00D390] text-white font-semibold py-2 px-4 rounded-lg hover:opacity-90 transition-opacity">
             Install Now (292 MB)
           </button>
+<a href="#" class="animated-button1">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  Button
+</a>
+
         </div>
       </div>
 
