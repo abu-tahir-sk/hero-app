@@ -8,19 +8,31 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-
+import { AddToStoredApp } from "../utility/utility";
 
 const AppDetails = () => {
   const { id } = useParams();
   const appId = parseInt(id);
   const data = useLoaderData();
   const appDetails = data.find((app) => app.id === appId);
-  const { title, image, ratingAvg, downloads, companyName, reviews } =
-    appDetails;
+  const {
+    title,
+    image,
+    ratingAvg,
+    downloads,
+    companyName,
+    reviews,
+    description,
+  } = appDetails;
   console.log(appDetails);
 
   const app = data[0];
   const sortedRatings = [...app.ratings].reverse();
+  const handleInstall = (id) => {
+    console.log(id);
+
+    AddToStoredApp(id);
+  };
 
   return (
     <div className="pt-10 mx-auto max-w-7xl">
@@ -37,41 +49,51 @@ const AppDetails = () => {
               {companyName}
             </span>
           </p>
-          <div className="border-b border-gray-400"></div>
+          <div className="border-b-2 border-gray-200"></div>
           <div className="flex items-center gap-8">
             <div className="flex flex-col py-3">
-              <img className="w-8 h-8" src="../../src/assets/icon-downloads.png" alt="" />
+              <img
+                className="w-8 h-8"
+                src="../../src/assets/icon-downloads.png"
+                alt=""
+              />
               <div className="text-gray-500 py-2">Downloads</div>
               <h3 className="font-extrabold text-3xl">{downloads}M</h3>
             </div>
             <div className="flex flex-col">
-              <img className="w-8 h-8" src="../../src/assets/icon-ratings.png" alt="" />
+              <img
+                className="w-8 h-8"
+                src="../../src/assets/icon-ratings.png"
+                alt=""
+              />
               <div className="text-gray-500 py-2">Average Ratings</div>
               <h3 className="font-extrabold text-3xl">{ratingAvg}</h3>
             </div>
             <div className="flex flex-col">
-              <img className="w-8 h-8" src="../../src/assets/icon-review.png" alt="" />
+              <img
+                className="w-8 h-8"
+                src="../../src/assets/icon-review.png"
+                alt=""
+              />
               <div className="text-gray-500 py-2">Reviews</div>
               <h3 className="font-extrabold text-3xl">{reviews}K</h3>
             </div>
           </div>
-          <button className="bg-[#00D390] text-white font-semibold py-2 px-4 rounded-lg hover:opacity-90 transition-opacity">
-            Install Now (292 MB)
+          <button
+            onClick={() => handleInstall(id)}
+            className="group relative  overflow-hidden rounded-md bg-[#00D390] text-neutral-200 transition hover:bg-[#2af5b1] font-semibold py-2 px-4 rounded-lg hover:opacity-90 transition-opacity"
+          >
+            <span className="relative">Install Now (292 MB)</span>
+            <div className="animate-shine-infinite absolute inset-0 -top-[20px] flex h-[calc(100%+30px)] w-full justify-center blur-[10px]">
+              <div className="relative h-full w-8 bg-white/50"></div>
+            </div>
           </button>
-<a href="#" class="animated-button1">
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  Button
-</a>
-
         </div>
       </div>
 
-      <div className="border-b border-gray-400"></div>
+      <div className="border-b-2 border-gray-200"></div>
 
-      <div className="w-full h-[300px] bg-gray-200 p-4 rounded-lg my-6">
+      <div className="w-full h-[300px]  p-4 rounded-lg my-6">
         <h2 className="text-lg font-semibold mb-4">Ratings</h2>
 
         <ResponsiveContainer width="100%" height="90%">
@@ -103,6 +125,11 @@ const AppDetails = () => {
             </Bar>
           </BarChart>
         </ResponsiveContainer>
+      </div>
+      <div className="border-b-2 border-gray-200"></div>
+      <div className="py-10">
+        <h5 className="font-semibold text-[24px]">Description</h5>
+        <p className="pt-6 text-gray-500">{description}</p>
       </div>
     </div>
   );
