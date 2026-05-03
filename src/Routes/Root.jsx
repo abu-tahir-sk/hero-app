@@ -14,8 +14,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        Component: Home
-        
+        Component: Home,
       },
       {
         path: "/apps",
@@ -24,9 +23,13 @@ const router = createBrowserRouter([
       {
         path: "/app/:id",
         Component: AppDetails,
-        loader: () => fetch("/appsData.json")
+        loader: () => fetch("/appsData.json"),
       },
-      { path: "/installation", Component: Installation },
+      {
+        path: "/installation",
+        Component: Installation,
+        loader: () => fetch("/appsData.json"),
+      },
     ],
   },
   { path: "*", Component: NotFount },

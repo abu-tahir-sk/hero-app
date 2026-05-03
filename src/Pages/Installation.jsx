@@ -1,12 +1,24 @@
 import { useState } from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
+import { useLoaderData } from "react-router";
+import { FiDownload } from "react-icons/fi";
+import { FaStar } from "react-icons/fa6";
 
 import "react-tabs/style/react-tabs.css";
+import { getStoredApp } from "../utility/utility";
 
 const Installation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState("Sort By Size");
+
   const options = ["Small", "Medium"];
+
+  const data = useLoaderData();
+
+  const storedAppData = getStoredApp();
+  const convertedStoredApps = storedAppData.map((id) => parseInt(id));
+  const appList = data.filter((app) => convertedStoredApps.includes(app.id));
+
   return (
     <div className="bg-gray-100">
       <div className="py-20 max-w-7xl mx-auto">
@@ -19,7 +31,9 @@ const Installation = () => {
         </p>
         {/* apps founds */}
         <div className="flex justify-between items-center pt-6">
-          <div className="font-semibold text-[24px]">1 Apps Found</div>
+          <div className="font-semibold text-[24px]">
+            {appList.length} Apps Found
+          </div>
           {/* dropdown */}
           <div className=" ">
             <button
@@ -52,33 +66,52 @@ const Installation = () => {
         {/* app cards */}
         <div className="overflow-x-auto py-4">
           <table className="min-w-full divide-y divide-gray-200">
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className=" divide-y divide-gray-200 ">
               {/* row 1 */}
-              <tr className="hover:bg-gray-100 cursor-pointer flex justify-between items-center gap-6 p-4">
-                <td className="px-6 py-4 text-sm text-gray-900  whitespace-nowrap">
-                  <div className="flex   items-center gap-3">
-                    <div className="">
-                      <div className=" h-12 w-12">
+              {appList.map((app) => (
+                <tr key={app.id} className="bg-white hover:bg-gray-100 cursor-pointer flex justify-between items-center gap-6 p-4 rounded-md mb-5">
+                  <td className="px-6 py-4 text-sm text-gray-900  whitespace-nowrap ">
+                    <div className="flex items-center gap-3">
+                      <div className=" overflow-hidden flex-shrink-0">
                         <img
-                          src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                          alt="Avatar Tailwind CSS Component"
+                          className="h-[60px] w-[60px] rounded-md "
+                          src={app.image}
+                          alt={app.title}
                         />
                       </div>
-                    </div>
-                    <div>
-                      <div className="font-bold">Hart Hagerty</div>
-                      <div className="text-sm opacity-50">United States</div>
-                    </div>
-                  </div>
-                </td>
 
-                 <td className="px-6 py-4">
-          <button className="btn btn-ghost btn-xs">details</button>
-        </td>
-              </tr>
+                      <div>
+                        <div className="font-medium text-lg">{app.title}</div>
+                        <div className="text-sm flex items-center gap-4">
+                          <div className="flex gap-1 items-center text-[#00D390] text-[16px] font-medium">
+                            <span>
+                              <FiDownload />
+                            </span>
+                            {app.downloads}MB
+                          </div>
+                          <div className="flex items-center gap-1 text-[#FF8811] text-[16px] font-medium">
+                            <span>
+                              <FaStar />
+                            </span>
+                            {app.ratingAvg}
+                          </div>
+                          <div className=" text-[16px] font-medium">
+                            {app.reviews}M
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td className="px-6 py-4">
+                    <button className="bg-[#00D390] text-white px-5 py-2 rounded ">
+                      Uninstall
+                    </button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
-          
         </div>
       </div>
     </div>
