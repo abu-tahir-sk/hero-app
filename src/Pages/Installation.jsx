@@ -5,20 +5,41 @@ import { FiDownload } from "react-icons/fi";
 import { FaStar } from "react-icons/fa6";
 
 import "react-tabs/style/react-tabs.css";
-import { getStoredApp } from "../utility/utility";
+import { getStoredApp, removeFromStoredApp } from "../utility/utility";
 
 const Installation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState("Sort By Size");
 
-  const options = ["Small", "Medium"];
+  const options = ["Small", "Medium", "Sort By Size"];
 
   const data = useLoaderData();
 
   const storedAppData = getStoredApp();
   const convertedStoredApps = storedAppData.map((id) => parseInt(id));
   const appList = data.filter((app) => convertedStoredApps.includes(app.id));
+  const [sortedApps, setSortedApps] = useState(appList);
 
+  const handleDelete = (id) => {
+    removeFromStoredApp(id);
+
+    const updated = sortedApps.filter((app) => app.id !== id);
+    setSortedApps(updated);
+  };
+
+  const handleSort = (type) => {
+    let sortedApps = [...appList];
+    if (type === "Sort By Size") {
+      sortedApps = [...appList];
+    }
+    if (type === "Small") {
+      sortedApps.sort((a, b) => a.reviews - b.reviews);
+    }
+    if (type === "Medium") {
+      sortedApps.sort((a, b) => b.reviews - a.reviews);
+    }
+    setSortedApps(sortedApps);
+  };
   return (
     <div className="bg-gray-100">
       <div className="py-20 max-w-7xl mx-auto">
@@ -53,6 +74,7 @@ const Installation = () => {
                     onClick={() => {
                       setSelected(option);
                       setIsOpen(false);
+                      handleSort(option);
                     }}
                     className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
                   >
@@ -65,11 +87,14 @@ const Installation = () => {
         </div>
         {/* app cards */}
         <div className="overflow-x-auto py-4">
-          <table className="min-w-full divide-y divide-gray-200">
-            <tbody className=" divide-y divide-gray-200 ">
+          <table className="min-w-full divide-y divide-gray-100">
+            <tbody className=" divide-y divide-gray-100 ">
               {/* row 1 */}
-              {appList.map((app) => (
-                <tr key={app.id} className="bg-white hover:bg-gray-100 cursor-pointer flex justify-between items-center gap-6 p-4 rounded-md mb-5">
+              {sortedApps.map((app) => (
+                <tr
+                  key={app.id}
+                  className="bg-white    cursor-pointer flex justify-between items-center gap-6 p-4 rounded-md mb-5    shadow transition-all duration-300  hover:shadow-2xl hover:-translate-y-2"
+                >
                   <td className="px-6 py-4 text-sm text-gray-900  whitespace-nowrap ">
                     <div className="flex items-center gap-3">
                       <div className=" overflow-hidden flex-shrink-0">
@@ -104,7 +129,7 @@ const Installation = () => {
                   </td>
 
                   <td className="px-6 py-4">
-                    <button className="bg-[#00D390] text-white px-5 py-2 rounded ">
+                    <button className="bg-[#00D390] text-white px-5 py-2 rounded " onClick={() => handleDelete(app.id)}>
                       Uninstall
                     </button>
                   </td>

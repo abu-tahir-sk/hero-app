@@ -8,7 +8,8 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { AddToStoredApp } from "../utility/utility";
+import { AddToStoredApp, getStoredApp } from "../utility/utility";
+import { useEffect, useState } from "react";
 
 const AppDetails = () => {
   const { id } = useParams();
@@ -28,12 +29,30 @@ const AppDetails = () => {
 
   const app = data[0];
   const sortedRatings = [...app.ratings].reverse();
+ const [installed, setInstalled] = useState(() => {
+  const storedApps = getStoredApp();
+  return storedApps.includes(appId);
+});
+
+
+
+
+  useEffect(() => {
+      const storedAppData = getStoredApp();
+  const isInstalled = storedAppData.includes(appId);
+  setInstalled(isInstalled);
+  },[appId]);
+ 
   const handleInstall = (id) => {
     console.log(id);
-
-    AddToStoredApp(id);
+      const storedApps = getStoredApp();
+  if (storedApps.includes(id.toString())) {
+    return; 
+  }
+    AddToStoredApp(id, title);
+    setInstalled(true);
   };
-
+n
   return (
     <div className="pt-10 mx-auto max-w-7xl">
       {/* image and details   */}
@@ -80,13 +99,25 @@ const AppDetails = () => {
             </div>
           </div>
           <button
-            onClick={() => handleInstall(id)}
-            className="group relative  overflow-hidden rounded-md bg-[#00D390] text-neutral-200 transition hover:bg-[#2af5b1] font-semibold py-2 px-4 rounded-lg hover:opacity-90 transition-opacity"
+            onClick={() => handleInstall(appId)}
+            disabled={installed}
+            className={` ${
+              installed
+                ? "bg-[#4da68b] py-2 px-4 rounded-md font-semibold text-neutral-200"
+                : "group relative  overflow-hidden rounded-md bg-[#00D390] text-neutral-200  hover:bg-[#2af5b1] font-semibold py-2 px-4  hover:opacity-90 transition-opacity"
+            }`}
           >
-            <span className="relative">Install Now (292 MB)</span>
-            <div className="animate-shine-infinite absolute inset-0 -top-[20px] flex h-[calc(100%+30px)] w-full justify-center blur-[10px]">
-              <div className="relative h-full w-8 bg-white/50"></div>
-            </div>
+            <span className="relative">
+              {" "}
+              {installed ? "Installed" : "Install Now (292 MB)"}
+            </span>
+            {installed ? (
+              ""
+            ) : (
+              <div className="animate-shine-infinite absolute inset-0 -top-[20px] flex h-[calc(100%+30px)] w-full justify-center blur-[10px]">
+                <div className="relative h-full w-8 bg-white/50"></div>
+              </div>
+            )}
           </button>
         </div>
       </div>

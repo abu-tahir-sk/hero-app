@@ -18,8 +18,8 @@ const Navbar = () => {
           {isMenuOpen ? <GrClose /> : <TiThMenu />}
         </div>
         <img className="w-10 h-10" src="/logo.png" alt="" />
-        <h2 className="text-[1rem] font-bold bg-gradient-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent  ">
-         <Link to="/"> Hero.Io</Link>
+        <h2 className="text-[18px] font-bold bg-gradient-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent  ">
+         <Link to="/"> Apps Hero</Link>
         </h2>
       </div>
       <div>

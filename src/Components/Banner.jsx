@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 const Banner = () => {
   return (
     <div className="">
@@ -19,11 +21,11 @@ const Banner = () => {
     <div className="flex justify-center items-center gap-6 py-8">
       <div className="flex items-center gap-2 border border-gray-300 px-5 py-2 shadow hover:bg-gradient-to-r from-blue-400 to-blue-500 transition duration-300 rounded hover:text-white">
         <img className="w-7 h-8 bg-blue-500" src="../../src/assets/googleplay.jpg" alt="ddad" />
-      <h5 className="font-semibold text-[20px]">Google Play</h5>
+      <h5 className="font-semibold text-[20px]"><Link to="https://play.google.com" target="_blank">Google Play</Link></h5>
       </div>
       <div className="flex items-center gap-2 border border-gray-300 px-5 py-2 shadow hover:bg-gradient-to-r from-blue-400 to-blue-500 transition duration-300 rounded hover:text-white">
         <img className="w-7 h-8"  src="../../src/assets/appStore.jpg" alt="ddad" />
-      <h5 className="font-semibold text-[20px]">App Store</h5>
+      <h5 className="font-semibold text-[20px]"><Link to="https://apps.apple.com" target="_blank">App Store</Link></h5>
       </div>
      
     </div>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import App from "./App";
 import { Link } from "react-router";
-
+ import { FaArrowTrendUp } from "react-icons/fa6";
 const TendingApps = () => {
   const [apps, setApps] = useState([]);
   console.log(apps);
@@ -15,8 +15,9 @@ const TendingApps = () => {
   }, []);
   return (
     <div className="py-20 max-w-7xl mx-auto p-4">
-      <h3 className="text-5xl font-bold text-center  leading-tight">
+      <h3 className="text-5xl font-bold text-center  leading-tight flex items-center justify-center gap-4">
         Trending Apps
+<FaArrowTrendUp />
       </h3>
       <p className="text-center text-gray-500 text-[20px]">
         Explore All Trending Apps on the Market developed by us
