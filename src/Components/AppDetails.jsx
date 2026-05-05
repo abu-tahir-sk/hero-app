@@ -40,6 +40,7 @@ const AppDetails = () => {
   useEffect(() => {
       const storedAppData = getStoredApp();
   const isInstalled = storedAppData.includes(appId);
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   setInstalled(isInstalled);
   },[appId]);
  
@@ -52,13 +53,13 @@ const AppDetails = () => {
     AddToStoredApp(id, title);
     setInstalled(true);
   };
-n
+
   return (
-    <div className="pt-10 mx-auto max-w-7xl">
+    <div className="pt-10 mx-auto max-w-7xl px-4">
       {/* image and details   */}
       <div className="flex flex-col md:flex-row items-center gap-10 pb-10 ">
         <div>
-          <img className="w-[220px] h-[200px]" src={image} alt={title} />
+          <img className="w-full md:w-[220px] h-[200px]" src={image} alt={title} />
         </div>
         <div className="px-6 md:px-2">
           <h2 className="text-3xl font-bold leading-tight">{title}</h2>

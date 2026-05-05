@@ -1,30 +1,29 @@
-import { Link, NavLink } from "react-router";
+import { Link, NavLink,} from "react-router";
 import { AiFillGithub } from "react-icons/ai";
-import { useState } from "react";
-import { TiThMenu } from "react-icons/ti";
-import { GrClose } from "react-icons/gr";
+
 
 
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  
+  const handleGithub = () => {
+  
+  window.open("https://github.com/abu-tahir-sk", "_blank");
+}
   return (
    <div className="shadow-md border-b border-gray-300">
-     <div className="flex items-center justify-between  py-4 bg-white px-4 md:px-0 max-w-7xl mx-auto">
+     <div className="flex items-center justify-between  py-4 bg-white px-4  max-w-7xl mx-auto">
+        <Link to="/">
       <div className="flex  items-center gap-2">
-        <div
-          className="md:hidden  text-[#632EE3] text-xl"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          {isMenuOpen ? <GrClose /> : <TiThMenu />}
-        </div>
         <img className="w-10 h-10" src="/logo.png" alt="" />
         <h2 className="text-[18px] font-bold bg-gradient-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent  ">
-         <Link to="/"> Apps Hero</Link>
+          Apps Hero
         </h2>
       </div>
+        </Link>
       <div>
         <ul
-          className={`md:flex absolute md:static duration-300 ${isMenuOpen ? "left-0 top-18 bg-white shadow md:shadow-none w-full py-2" : "left-0 -top-24"}  md:items-center gap-8`}
+          className={`hidden md:flex absolute md:static duration-300  md:items-center gap-8`}
         >
           <li>
             <NavLink
@@ -66,11 +65,17 @@ const Navbar = () => {
         </ul>
       </div>
       <div>
-        <button className="text-white bg-linear-to-r from-[#632EE3] to-[#9F62F2] p-2 px-5 text-[16px] font-semibold rounded  hover:bg-gradient-to-r hover:from-[#9F62F2] hover:to-[#632EE3] transition-colors duration-300">
+        <button className="text-white bg-linear-to-r from-[#632EE3] to-[#9F62F2] p-2 px-5 text-[16px] font-semibold rounded  hover:bg-gradient-to-r hover:from-[#9F62F2] hover:to-[#632EE3] transition-colors duration-300 animated-button1" onClick={handleGithub}>
+           <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
           
          
-          <Link className="flex items-center gap-2" to="https://github.com/abu-tahir-sk" target="_blank"> 
-          <AiFillGithub className="text-xl" /> Contribute</Link>
+       
+        <div className="flex items-center gap-2">
+            <AiFillGithub className="text-xl" /> Contribute
+        </div>
         </button>
       </div>
     </div>

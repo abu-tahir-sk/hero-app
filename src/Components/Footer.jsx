@@ -5,8 +5,8 @@ const Footer = () => {
         const year = new Date().getFullYear();
       return (
             <div className="bg-[#001931]">
-                <div className="max-w-7xl mx-auto  py-8">
-             <div className="flex justify-between items-center px-4 md:px-0">
+                <div className=" lg:max-w-7xl mx-auto  py-8 ">
+             <div className="flex justify-between items-center px-4">
                   <div className="flex items-center gap-3">
                         <img className="w-10 h-10" src="/logo.png" alt="Logo" />
                         <h2 className="font-bold text-[16px] text-white">Hero.Io </h2>
