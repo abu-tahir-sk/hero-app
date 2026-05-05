@@ -3,6 +3,7 @@ import { CiSearch } from "react-icons/ci";
 import App from "../Components/App";
 import { IoIosApps } from "react-icons/io";
 import AppsNotFound from "../Components/AppsNotFound";
+import Revel from "./Revel";
 
 const Apps = () => {
   const [apps, setApps] = useState([]);
@@ -39,7 +40,8 @@ const Apps = () => {
   };
 
   return (
-    <div className="bg-gray-100">
+    <Revel>
+      <div className="bg-gray-100">
       <div className="py-20 max-w-7xl mx-auto">
         <h3 className="text-3xl md:text-5xl font-bold text-center  leading-tight flex justify-center items-center gap-2 ">
           Our All Applications{" "}
@@ -97,6 +99,7 @@ const Apps = () => {
         )}
       </div>
     </div>
+    </Revel>
   );
 };
 

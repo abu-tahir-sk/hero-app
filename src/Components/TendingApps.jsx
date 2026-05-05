@@ -4,23 +4,23 @@ import { Link, useNavigate } from "react-router";
 import { FaArrowTrendUp } from "react-icons/fa6";
 const TendingApps = () => {
   const [apps, setApps] = useState([]);
-     const [loading, setLoading] = useState(false);
-     const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-  console.log(apps);
+ 
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLoading(true);
     fetch("/appsData.json")
       .then((res) => res.json())
       .then((data) => {
         setApps(data);
       });
-      setTimeout(() => {
-        setLoading(false);
-      }, 2000);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
   }, []);
-
 
   const handleClick = () => {
     setLoading(true);
@@ -41,23 +41,36 @@ const TendingApps = () => {
       <p className="text-center text-gray-500 text-[20px]">
         Explore All Trending Apps on the Market developed by us
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 bg-gray-50 my-10">
-        {apps.slice(0, 8).map((app) => (
-          <App key={app.id} app={app} />
-        ))}
-      </div>
+      {loading ? (
+        <div massage="data loading" className="   border-t-transparent flex justify-center items-center text-3xl font-semibold h-[40vh]">
+          L
+          <span className="">
+            <img src="/logo.png" className="animate-spin h-12 w-12" alt="" />
+          </span>
+          ading
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 bg-gray-50 my-10">
+          {apps.slice(0, 8).map((app) => (
+            <App
+              key={app.id}
+              app={app}
+              setLoading={setLoading}
+              loading={loading}
+            />
+          ))}
+        </div>
+      )}
+
       <div className="flex justify-center items-center">
-        {" "}
-        {loading ? (
-          <div className="   border-t-transparent flex justify-center items-center text-3xl font-semibold">L<span className=""><img src="/logo.png" className="animate-spin h-12 w-12" alt="" /></span>ading</div>
-        ) : (
+       
           <button
             className="font-semibold text-[16px] bg-linear-to-r from-[#632EE3] to-[#9F62F2] text-white px-4 py-2 rounded-md hover:bg-gradient-to-r hover:from-[#9F62F2] hover:to-[#632EE3] transition-colors duration-300"
             onClick={handleClick}
           >
             <Link to="">Show All</Link>
           </button>
-        )}
+        
       </div>
     </div>
   );

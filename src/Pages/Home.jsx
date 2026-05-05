@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Banner from "../Components/Banner";
 import TendingApps from "../Components/TendingApps";
 import Trusted from "../Components/Trusted";
+import Revel from "./Revel";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -30,8 +31,12 @@ const Home = () => {
   return (
     <div>
       <Banner />
-      <Trusted />
-      <TendingApps />
+      <Revel>
+        <Trusted />
+      </Revel>
+      <Revel>
+        <TendingApps />
+      </Revel>
     </div>
   );
 };

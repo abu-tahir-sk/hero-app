@@ -2,6 +2,7 @@ import { IoMdStar } from "react-icons/io";
 
 import { LuDownload } from "react-icons/lu";
 import { useNavigate } from "react-router";
+import Revel from "../Pages/Revel";
 
 const App = ({ app, loading, setLoading }) => {
   const { id, title, ratingAvg, image, downloads } = app;
@@ -17,7 +18,8 @@ const App = ({ app, loading, setLoading }) => {
       }, 2000);
   };
   return (
-    <div>
+   <Revel>
+     <div>
       {loading ? (
         <div className="   border-t-transparent flex justify-center items-center text-3xl font-semibold">
           L
@@ -49,6 +51,7 @@ const App = ({ app, loading, setLoading }) => {
         </div>
       )}
     </div>
+   </Revel>
   );
 };
 

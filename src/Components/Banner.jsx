@@ -1,7 +1,9 @@
 import { Link } from "react-router";
+import Revel from "../Pages/Revel";
 
 const Banner = () => {
   return (
+    <Revel>
     <div className="">
       <div className="pt-[80px]">
         <h1 className="text-4xl md:text-5xl lg:text-7xl leading-tight font-bold text-center">
@@ -35,6 +37,7 @@ const Banner = () => {
         <img className="" src="../../src/assets/hero.png" alt="" />
       </div>
     </div>
+    </Revel>
   );
 };
 

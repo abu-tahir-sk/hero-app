@@ -10,6 +10,7 @@ import {
 } from "recharts";
 import { AddToStoredApp, getStoredApp } from "../utility/utility";
 import { useEffect, useState } from "react";
+import Revel from "../Pages/Revel";
 
 const AppDetails = () => {
   const { id } = useParams();
@@ -25,7 +26,7 @@ const AppDetails = () => {
     reviews,
     description,
   } = appDetails;
-  console.log(appDetails);
+ 
 
   const app = data[0];
   const sortedRatings = [...app.ratings].reverse();
@@ -45,7 +46,7 @@ const AppDetails = () => {
   },[appId]);
  
   const handleInstall = (id) => {
-    console.log(id);
+   
       const storedApps = getStoredApp();
   if (storedApps.includes(id.toString())) {
     return; 
@@ -55,7 +56,8 @@ const AppDetails = () => {
   };
 
   return (
-    <div className="pt-10 mx-auto max-w-7xl px-4">
+  <Revel>
+      <div className="pt-10 mx-auto max-w-7xl px-4">
       {/* image and details   */}
       <div className="flex flex-col md:flex-row items-center gap-10 pb-10 ">
         <div>
@@ -164,6 +166,7 @@ const AppDetails = () => {
         <p className="pt-6 text-gray-500">{description}</p>
       </div>
     </div>
+  </Revel>
   );
 };
 
