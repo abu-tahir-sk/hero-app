@@ -11,6 +11,9 @@ import {
 import { AddToStoredApp, getStoredApp } from "../utility/utility";
 import { useEffect, useState } from "react";
 import Revel from "../Pages/Revel";
+import download from "../assets/icon-downloads.png";
+import apps from "../assets/appStore.jpg";
+import review from "../assets/icon-review.png";
 
 const AppDetails = () => {
   const { id } = useParams();
@@ -76,7 +79,7 @@ const AppDetails = () => {
             <div className="flex flex-col py-3">
               <img
                 className="w-8 h-8"
-                src="../../src/assets/icon-downloads.png"
+                src={download}
                 alt=""
               />
               <div className="text-gray-500 py-2">Downloads</div>
@@ -85,7 +88,7 @@ const AppDetails = () => {
             <div className="flex flex-col">
               <img
                 className="w-8 h-8"
-                src="../../src/assets/icon-ratings.png"
+                src={apps}
                 alt=""
               />
               <div className="text-gray-500 py-2">Average Ratings</div>
@@ -94,7 +97,7 @@ const AppDetails = () => {
             <div className="flex flex-col">
               <img
                 className="w-8 h-8"
-                src="../../src/assets/icon-review.png"
+                src={review}
                 alt=""
               />
               <div className="text-gray-500 py-2">Reviews</div>

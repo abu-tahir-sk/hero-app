@@ -1,5 +1,8 @@
 import { Link } from "react-router";
 import Revel from "../Pages/Revel";
+import google from "../assets/googleplay.jpg";
+import appStore from "../assets/appStore.jpg";
+import hero from "../assets/hero.png";
 
 const Banner = () => {
   return (
@@ -22,11 +25,11 @@ const Banner = () => {
     
     <div className="flex justify-center items-center gap-3 md:gap-6 py-8">
       <div className="flex items-center gap-2 border border-gray-300 px-3 md:px-5 py-2 shadow hover:bg-gray-400 transition duration-300 rounded hover:text-white">
-        <img className="w-7 h-8 bg-blue-500" src="../../src/assets/googleplay.jpg" alt="ddad" />
+        <img className="w-7 h-8 bg-blue-500" src={google} alt="ddad" />
       <h5 className="font-semibold text-[20px]"><Link to="https://play.google.com" target="_blank">Google Play</Link></h5>
       </div>
       <div className="flex items-center gap-2 border border-gray-300 px-3 md:px-5 py-2 shadow hover:bg-gray-400 transition duration-300 rounded hover:text-white">
-        <img className="w-7 h-8"  src="../../src/assets/appStore.jpg" alt="ddad" />
+        <img className="w-7 h-8"  src={appStore}alt="appStore" />
       <h5 className="font-semibold text-[20px]"><Link to="https://apps.apple.com" target="_blank">App Store</Link></h5>
       </div>
      
@@ -34,7 +37,7 @@ const Banner = () => {
   </div>
       </div>
       <div className="flex justify-center items-center px-4 md:px-0">
-        <img className="" src="../../src/assets/hero.png" alt="" />
+        <img className="" src={hero} alt="" />
       </div>
     </div>
     </Revel>
